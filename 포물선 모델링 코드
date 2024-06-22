@@ -1,0 +1,55 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+def parabolic_trajectory_3d(v0, theta, phi, g=9.81, t_max=3, num_points=500):
+    """
+    3차원 포물선 운동을 모델링하는 함수.
+    
+    Parameters:
+    - v0: 초기 속도 (m/s)
+    - theta: 발사 각도 (degrees)
+    - phi: 시선에 수직한 평면과의 각도 (degrees)
+    - g: 중력 가속도 (m/s^2), 기본값은 9.81
+    - t_max: 시뮬레이션할 시간의 최대값 (초), 기본값은 3
+    - num_points: 시간 간격의 수, 기본값은 500
+    
+    Returns:
+    - x, y, z: 3차원 공간에서의 좌표 배열
+    """
+    
+    # 각도를 라디안으로 변환
+    theta_rad = np.radians(theta)
+    phi_rad = np.radians(phi)
+
+    # 시간 생성
+    t = np.linspace(0, t_max, num_points)
+
+    # x, y, z 좌표 계산
+    x = v0 * np.cos(theta_rad) * np.cos(phi_rad) * t
+    y = v0 * np.sin(theta_rad) * t - 0.5 * g * t**2
+    z = v0 * np.cos(theta_rad) * np.sin(phi_rad) * t
+
+    return x, y, z
+
+# 초기 조건 설정
+v0 = 30  # 초기 속도 (m/s)
+theta = 30  # 발사 각도 (degrees)
+phi = 5  # 시선에 수직한 평면과의 각도 (degrees)
+
+# 3차원 포물선 운동 모델링
+x, y, z = parabolic_trajectory_3d(v0, theta, phi)
+
+# 그래프 그리기
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(x, y, z)
+ax.set_xlabel('X (시선 방향)')
+ax.set_ylabel('Y (높이)')
+ax.set_zlabel('Z (시선에 수직)')
+
+# 제목 추가
+ax.set_title("3D Parabolic Trajectory")
+
+# 그래프 표시
+plt.show()
