@@ -33,9 +33,9 @@ def parabolic_trajectory_3d(v0, theta, phi, g=9.81, t_max=3, num_points=500):
     return x, y, z
 
 # 초기 조건 설정
-v0 = 30  # 초기 속도 (m/s)
-theta = 30  # 발사 각도 (degrees)
-phi = 5  # 시선에 수직한 평면과의 각도 (degrees)
+v0 = 설정값 입력  # 초기 속도 (m/s)
+theta = 설정값 입력  # 발사 각도 (degrees)
+phi = 설정값 입력  # 시선에 수직한 평면과의 각도 (degrees)
 
 # 3차원 포물선 운동 모델링
 x, y, z = parabolic_trajectory_3d(v0, theta, phi)
